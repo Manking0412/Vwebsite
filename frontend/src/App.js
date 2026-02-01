@@ -1,52 +1,203 @@
-import { useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+function App() {
+  const [accepted, setAccepted] = useState(false);
+  const [yesSize, setYesSize] = useState(1);
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
+  const noButtonRef = useRef(null);
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
+  const messages = [
+    "Are you sure, Junnu? 🥺",
+    "Really, Junnu? 💔",
+    "Think again, Junnu! 😢",
+    "Junnu, please! 🥹",
+    "Don't break my heart, Junnu! 💔",
+  ];
+
+  useEffect(() => {
+    // Initialize no button position to center-ish
+    if (noButtonRef.current) {
+      const rect = noButtonRef.current.getBoundingClientRect();
+      setNoButtonPosition({
+        x: window.innerWidth / 2 + 100,
+        y: window.innerHeight / 2,
+      });
+    }
+  }, []);
+
+  const moveNoButton = (e) => {
+    if (accepted) return;
+
+    const button = noButtonRef.current;
+    if (!button) return;
+
+    const rect = button.getBoundingClientRect();
+    const buttonCenterX = rect.left + rect.width / 2;
+    const buttonCenterY = rect.top + rect.height / 2;
+
+    // Get mouse position
+    const mouseX = e.clientX || e.touches?.[0]?.clientX || 0;
+    const mouseY = e.clientY || e.touches?.[0]?.clientY || 0;
+
+    // Calculate distance from mouse to button center
+    const distance = Math.sqrt(
+      Math.pow(mouseX - buttonCenterX, 2) + Math.pow(mouseY - buttonCenterY, 2)
+    );
+
+    // If mouse is too close (within 120px), move the button
+    if (distance < 120) {
+      // Calculate new random position
+      const maxX = window.innerWidth - rect.width - 20;
+      const maxY = window.innerHeight - rect.height - 20;
+
+      let newX = Math.random() * maxX;
+      let newY = Math.random() * maxY;
+
+      // Ensure minimum distance from current position
+      const minDistance = 150;
+      const distanceFromCurrent = Math.sqrt(
+        Math.pow(newX - buttonCenterX, 2) + Math.pow(newY - buttonCenterY, 2)
+      );
+
+      if (distanceFromCurrent < minDistance) {
+        // Move further away
+        newX = (newX + maxX / 2) % maxX;
+        newY = (newY + maxY / 2) % maxY;
+      }
+
+      setNoButtonPosition({ x: newX, y: newY });
+      setYesSize((prev) => prev + 0.15);
+      setMessageIndex((prev) => (prev + 1) % messages.length);
     }
   };
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
+  const handleYesClick = () => {
+    setAccepted(true);
+  };
+
+  // Prevent click on no button
+  const handleNoClick = (e) => {
+    e.preventDefault();
+    moveNoButton(e);
+  };
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+    <div className="valentine-container" data-testid="valentine-container">
+      {/* Floating hearts background */}
+      <div className="hearts-background">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="floating-heart"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${5 + Math.random() * 5}s`,
+            }}
+          >
+            💖
+          </div>
+        ))}
+      </div>
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      {!accepted ? (
+        <div className="proposal-content" data-testid="proposal-screen">
+          <h1 className="main-heading" data-testid="main-heading">
+            Junnu, will you be my Valentine? 💝
+          </h1>
+          <p className="sub-heading" data-testid="sub-heading">
+            I have something important to ask you, Junnu...
+          </p>
+
+          {messageIndex > 0 && (
+            <p className="pleading-message" data-testid="pleading-message">
+              {messages[messageIndex]}
+            </p>
+          )}
+
+          <div className="buttons-container">
+            <button
+              className="yes-button"
+              onClick={handleYesClick}
+              style={{
+                transform: `scale(${yesSize})`,
+              }}
+              data-testid="yes-button"
+            >
+              Yes! 💕
+            </button>
+
+            <button
+              ref={noButtonRef}
+              className="no-button"
+              onMouseOver={moveNoButton}
+              onMouseMove={moveNoButton}
+              onMouseDown={handleNoClick}
+              onTouchStart={moveNoButton}
+              onClick={handleNoClick}
+              style={{
+                position: "fixed",
+                left: `${noButtonPosition.x}px`,
+                top: `${noButtonPosition.y}px`,
+                transform: `scale(${Math.max(0.3, 1 - yesSize * 0.1)})`,
+              }}
+              data-testid="no-button"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="success-screen" data-testid="success-screen">
+          {/* Heart explosion */}
+          <div className="heart-explosion">
+            {[...Array(30)].map((_, i) => (
+              <div
+                key={i}
+                className="explosion-heart"
+                style={{
+                  left: `${50 + (Math.random() - 0.5) * 100}%`,
+                  top: `${50 + (Math.random() - 0.5) * 100}%`,
+                  animationDelay: `${Math.random() * 0.5}s`,
+                }}
+              >
+                💕
+              </div>
+            ))}
+          </div>
+
+          <div className="success-content">
+            <h1 className="success-heading" data-testid="success-heading">
+              I knew it, Junnu! 💕
+            </h1>
+            <p className="success-message" data-testid="success-message-1">
+              You've made me the happiest! Happy Valentine's Day, my love! 🌹
+            </p>
+            <p className="success-message-2" data-testid="success-message-2">
+              Can't wait to celebrate with you, Junnu! 💝
+            </p>
+          </div>
+
+          {/* Confetti hearts */}
+          <div className="confetti-container">
+            {[...Array(50)].map((_, i) => (
+              <div
+                key={i}
+                className="confetti-heart"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${3 + Math.random() * 2}s`,
+                }}
+              >
+                {i % 3 === 0 ? "💕" : i % 3 === 1 ? "💖" : "💝"}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
