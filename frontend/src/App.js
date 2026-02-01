@@ -87,13 +87,6 @@ function App() {
     }
     
     setAccepted(true);
-    
-    // Play Lauv song after a short delay
-    setTimeout(() => {
-      if (luvSongRef.current) {
-        luvSongRef.current.play().catch(err => console.log("Song play failed:", err));
-      }
-    }, 500);
   };
 
   // Prevent click on no button
