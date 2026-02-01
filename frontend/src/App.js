@@ -12,6 +12,7 @@ function App() {
   // Sound effects
   const noBuzzRef = useRef(null);
   const yesCelebrationRef = useRef(null);
+  const luvSongRef = useRef(null);
 
   const messages = [
     "Are you sure, Babe? 🥺",
