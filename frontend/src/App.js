@@ -3,6 +3,7 @@ import "@/App.css";
 
 function App() {
   const [accepted, setAccepted] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const [yesSize, setYesSize] = useState(1);
   const [messageIndex, setMessageIndex] = useState(0);
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
