@@ -6,6 +6,7 @@ function App() {
   const [yesSize, setYesSize] = useState(1);
   const [messageIndex, setMessageIndex] = useState(0);
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
+  const [noButtonMoved, setNoButtonMoved] = useState(false);
   const noButtonRef = useRef(null);
 
   const messages = [
