@@ -48,6 +48,12 @@ function App() {
 
     // If mouse is too close (within 120px), move the button
     if (distance < 120) {
+      // Play "no" sound
+      if (noBuzzRef.current) {
+        noBuzzRef.current.currentTime = 0;
+        noBuzzRef.current.play().catch(err => console.log("Audio play failed:", err));
+      }
+
       // Calculate new random position
       const maxX = window.innerWidth - rect.width - 20;
       const maxY = window.innerHeight - rect.height - 20;
