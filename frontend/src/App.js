@@ -108,7 +108,6 @@ function App() {
       {/* Lauv - I Like Me Better song (plays on success) */}
       {accepted && (
         <iframe
-          ref={luvSongRef}
           style={{ display: 'none' }}
           src="https://www.youtube.com/embed/a7fzkqLozwA?autoplay=1&controls=0"
           title="Lauv - I Like Me Better"
