@@ -111,6 +111,17 @@ function App() {
       <audio ref={yesCelebrationRef} preload="auto">
         <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg" />
       </audio>
+      
+      {/* Lauv - I Like Me Better song (plays on success) */}
+      {accepted && (
+        <iframe
+          ref={luvSongRef}
+          style={{ display: 'none' }}
+          src="https://www.youtube.com/embed/a7fzkqLozwA?autoplay=1&controls=0"
+          title="Lauv - I Like Me Better"
+          allow="autoplay; encrypted-media"
+        />
+      )}
 
       {/* Floating hearts background */}
       <div className="hearts-background">
