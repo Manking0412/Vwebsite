@@ -183,9 +183,6 @@ function App() {
               />
             </div>
             
-            <p className="success-message" data-testid="success-message-1">
-              You've made me the happiest! 🌹
-            </p>
             <p className="success-message-2" data-testid="success-message-2">
               Can't wait to celebrate with you! 💝
             </p>
