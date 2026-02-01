@@ -18,14 +18,7 @@ function App() {
   ];
 
   useEffect(() => {
-    // Initialize no button position to center-ish
-    if (noButtonRef.current) {
-      const rect = noButtonRef.current.getBoundingClientRect();
-      setNoButtonPosition({
-        x: window.innerWidth / 2 + 100,
-        y: window.innerHeight / 2,
-      });
-    }
+    // No need to set initial position, let CSS handle it
   }, []);
 
   const moveNoButton = (e) => {
