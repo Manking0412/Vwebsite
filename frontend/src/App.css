@@ -643,6 +643,24 @@ body {
     font-size: 1.1rem;
   }
 
+  .couple-image {
+    width: 250px;
+    height: 250px;
+  }
+
+  .message-heading {
+    font-size: 2rem;
+  }
+
+  .message-text {
+    font-size: 1.1rem;
+  }
+
+  .scroll-content {
+    padding: 2rem 1.5rem;
+  }
+
+
   .success-message-2 {
     font-size: 1rem;
   }
