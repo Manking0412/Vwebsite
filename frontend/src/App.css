@@ -175,7 +175,6 @@ body {
   z-index: 50;
   box-shadow: 0 4px 15px rgba(255, 94, 138, 0.4);
 }
-}
 
 .no-button:hover {
   animation: wobble 0.3s ease;
