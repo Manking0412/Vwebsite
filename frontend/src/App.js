@@ -80,6 +80,10 @@ function App() {
   };
 
   const handleYesClick = () => {
+    // Play celebration sound
+    if (yesCelebrationRef.current) {
+      yesCelebrationRef.current.play().catch(err => console.log("Audio play failed:", err));
+    }
     setAccepted(true);
   };
 
