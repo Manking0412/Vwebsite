@@ -172,7 +172,7 @@ function App() {
 
           <div className="success-content">
             <h1 className="success-heading" data-testid="success-heading">
-              I knew it, Babe! 💕
+              I knew it, Baby pie! 💕
             </h1>
             
             <div className="gif-container" data-testid="celebration-gif">
