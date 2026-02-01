@@ -95,6 +95,14 @@ function App() {
 
   return (
     <div className="valentine-container" data-testid="valentine-container">
+      {/* Audio elements */}
+      <audio ref={noBuzzRef} preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={yesCelebrationRef} preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg" />
+      </audio>
+
       {/* Floating hearts background */}
       <div className="hearts-background">
         {[...Array(20)].map((_, i) => (
