@@ -9,11 +9,11 @@ function App() {
   const noButtonRef = useRef(null);
 
   const messages = [
-    "Are you sure, Junnu? 🥺",
-    "Really, Junnu? 💔",
-    "Think again, Junnu! 😢",
-    "Junnu, please! 🥹",
-    "Don't break my heart, Junnu! 💔",
+    "Are you sure, Babe? 🥺",
+    "Really, Babe? 💔",
+    "Think again, Babe! 😢",
+    "Babe, please! 🥹",
+    "Don't break my heart, Babe! 💔",
   ];
 
   useEffect(() => {
