@@ -9,6 +9,10 @@ function App() {
   const [noButtonMoved, setNoButtonMoved] = useState(false);
   const noButtonRef = useRef(null);
 
+  // Sound effects
+  const noBuzzRef = useRef(null);
+  const yesCelebrationRef = useRef(null);
+
   const messages = [
     "Are you sure, Babe? 🥺",
     "Really, Babe? 💔",
