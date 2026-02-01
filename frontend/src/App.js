@@ -220,6 +220,14 @@ function App() {
             <p className="success-message-2" data-testid="success-message-2">
               Can't wait to celebrate with you! 💝
             </p>
+            
+            <button 
+              className="read-me-button" 
+              onClick={() => setShowMessage(true)}
+              data-testid="read-me-button"
+            >
+              Read Me 💌
+            </button>
           </div>
 
           {/* Confetti hearts */}
