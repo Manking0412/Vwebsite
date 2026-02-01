@@ -170,13 +170,22 @@ function App() {
 
           <div className="success-content">
             <h1 className="success-heading" data-testid="success-heading">
-              I knew it, Junnu! 💕
+              I knew it, Babe! 💕
             </h1>
+            
+            <div className="gif-container" data-testid="celebration-gif">
+              <img 
+                src="https://share.google/UUyhtVpXz6sTGDYTY" 
+                alt="Celebration" 
+                className="celebration-gif"
+              />
+            </div>
+            
             <p className="success-message" data-testid="success-message-1">
               You've made me the happiest! Happy Valentine's Day, my love! 🌹
             </p>
             <p className="success-message-2" data-testid="success-message-2">
-              Can't wait to celebrate with you, Junnu! 💝
+              Can't wait to celebrate with you, Babe! 💝
             </p>
           </div>
 
