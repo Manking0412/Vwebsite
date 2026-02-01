@@ -161,9 +161,9 @@ body {
 }
 
 .no-button {
-  background: #FFB6D9;
+  background: #FF9EC5;
   color: #D64478;
-  border: 2px solid #FFD0E0;
+  border: 3px solid #FF6B9D;
   padding: 1.2rem 2.5rem;
   font-size: 1.2rem;
   font-weight: 600;
@@ -173,6 +173,8 @@ body {
   font-family: 'Nunito', sans-serif;
   white-space: nowrap;
   z-index: 50;
+  box-shadow: 0 4px 15px rgba(255, 94, 138, 0.4);
+}
 }
 
 .no-button:hover {
