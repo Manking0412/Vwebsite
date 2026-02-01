@@ -1,34 +1,394 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@300;400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  overflow: hidden;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.valentine-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #FFF5F9 0%, #FFE4EC 25%, #FFD0E0 50%, #FFC9E0 75%, #FFE4EC 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Nunito', sans-serif;
 }
 
-.App-link {
-    color: #61dafb;
+/* Floating hearts background */
+.hearts-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.floating-heart {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.3;
+  animation: float-up linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Proposal content */
+.proposal-content {
+  text-align: center;
+  z-index: 10;
+  padding: 2rem;
+  max-width: 800px;
+  animation: fade-in 1s ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-heading {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: #FF5E8A;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 8px rgba(255, 107, 157, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 2px 2px 8px rgba(255, 107, 157, 0.3);
+  }
+  50% {
+    text-shadow: 2px 2px 20px rgba(255, 107, 157, 0.6);
+  }
+}
+
+.sub-heading {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: #D64478;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.pleading-message {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: #FF5E8A;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  animation: bounce-in 0.5s ease-out;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Buttons */
+.buttons-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  position: relative;
+  min-height: 150px;
+}
+
+.yes-button {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF5E8A 100%);
+  color: white;
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255, 94, 138, 0.4);
+  font-family: 'Nunito', sans-serif;
+  position: relative;
+  z-index: 100;
+}
+
+.yes-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 94, 138, 0.6);
+}
+
+.yes-button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.no-button {
+  background: #FFB6D9;
+  color: #D64478;
+  border: 2px solid #FFD0E0;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-family: 'Nunito', sans-serif;
+  white-space: nowrap;
+  z-index: 50;
+}
+
+.no-button:hover {
+  animation: wobble 0.3s ease;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Success screen */
+.success-screen {
+  text-align: center;
+  z-index: 10;
+  padding: 2rem;
+  animation: zoom-in 0.8s ease-out;
+  position: relative;
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.success-content {
+  position: relative;
+  z-index: 20;
+}
+
+.success-heading {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(3rem, 7vw, 5rem);
+  color: #FF5E8A;
+  margin-bottom: 2rem;
+  text-shadow: 3px 3px 15px rgba(255, 107, 157, 0.5);
+  animation: rainbow-glow 3s ease-in-out infinite;
+}
+
+@keyframes rainbow-glow {
+  0%, 100% {
+    text-shadow: 3px 3px 15px rgba(255, 107, 157, 0.5);
+  }
+  33% {
+    text-shadow: 3px 3px 20px rgba(255, 182, 217, 0.7);
+  }
+  66% {
+    text-shadow: 3px 3px 20px rgba(255, 94, 138, 0.7);
+  }
+}
+
+.success-message {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  color: #D64478;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.success-message-2 {
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  color: #FF6B9D;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* Heart explosion */
+.heart-explosion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.explosion-heart {
+  position: absolute;
+  font-size: 2.5rem;
+  animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.explosion-heart:nth-child(odd) {
+  --tx: calc((Math.random() - 0.5) * 400px);
+  --ty: calc((Math.random() - 0.5) * 400px);
+}
+
+.explosion-heart:nth-child(even) {
+  --tx: calc((Math.random() - 0.5) * -400px);
+  --ty: calc((Math.random() - 0.5) * -400px);
+}
+
+/* Confetti hearts */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.confetti-heart {
+  position: absolute;
+  top: -50px;
+  font-size: 1.8rem;
+  animation: fall-confetti linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall-confetti {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.5;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .proposal-content {
+    padding: 1.5rem;
+  }
+
+  .main-heading {
+    font-size: 2.5rem;
+  }
+
+  .sub-heading {
+    font-size: 1.2rem;
+  }
+
+  .buttons-container {
+    gap: 1.5rem;
+  }
+
+  .yes-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+  }
+
+  .no-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .floating-heart {
+    font-size: 1.5rem;
+  }
+
+  .success-heading {
+    font-size: 2.5rem;
+  }
+
+  .success-message {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 2rem;
+  }
+
+  .sub-heading {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .pleading-message {
+    font-size: 1rem;
+  }
+
+  .yes-button {
+    padding: 0.9rem 2rem;
+    font-size: 1.2rem;
+  }
+
+  .no-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .success-heading {
+    font-size: 2rem;
+  }
+
+  .success-message {
+    font-size: 1.1rem;
+  }
+
+  .success-message-2 {
+    font-size: 1rem;
+  }
 }
