@@ -27,6 +27,8 @@ function App() {
     const button = noButtonRef.current;
     if (!button) return;
 
+    setNoButtonMoved(true);
+
     const rect = button.getBoundingClientRect();
     const buttonCenterX = rect.left + rect.width / 2;
     const buttonCenterY = rect.top + rect.height / 2;
