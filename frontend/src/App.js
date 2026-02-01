@@ -175,7 +175,7 @@ function App() {
             
             <div className="gif-container" data-testid="celebration-gif">
               <img 
-                src="https://share.google/UUyhtVpXz6sTGDYTY" 
+                src="https://media1.tenor.com/m/Fy9zovre5VAAAAAd/bubu-dudu-kisses.gif" 
                 alt="Celebration" 
                 className="celebration-gif"
               />
