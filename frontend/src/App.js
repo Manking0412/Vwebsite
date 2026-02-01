@@ -248,6 +248,49 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Special Message Page */}
+      {showMessage && (
+        <div className="message-page" data-testid="message-page">
+          <button 
+            className="back-button" 
+            onClick={() => setShowMessage(false)}
+            data-testid="back-button"
+          >
+            ← Back
+          </button>
+
+          <div className="message-container">
+            <div className="couple-photo">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_029851d6-7e0c-4959-846a-d3775d058cc7/artifacts/dzrbt82a_delete%20asap.jpeg" 
+                alt="Us Together" 
+                className="couple-image"
+              />
+            </div>
+
+            <div className="scroll-container">
+              <div className="scroll-top"></div>
+              <div className="scroll-content">
+                <h2 className="message-heading">Hey Cutie! 💕</h2>
+                <p className="message-text">
+                  I love you to the moon and back okay!
+                </p>
+                <p className="message-text">
+                  I know lately I haven't been the same with you and I just hate it.
+                </p>
+                <p className="message-text">
+                  But I can't imagine a life without you kannu. Life would not have been this peaceful without you and I always want us to be like this.
+                </p>
+                <p className="message-text message-end">
+                  Can't wait to see you!! 🌹
+                </p>
+              </div>
+              <div className="scroll-bottom"></div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
