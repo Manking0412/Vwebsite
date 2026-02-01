@@ -104,7 +104,7 @@ function App() {
             Junnu, will you be my Valentine? 💝
           </h1>
           <p className="sub-heading" data-testid="sub-heading">
-            pretty pleaseeee
+            pretty pleaseeee 🥺
           </p>
 
           {messageIndex > 0 && (
