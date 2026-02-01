@@ -108,7 +108,7 @@ function App() {
             Junnu, will you be my Valentine? 💝
           </h1>
           <p className="sub-heading" data-testid="sub-heading">
-            I have something important to ask you, Junnu...
+            I have something important to ask you, Babe...
           </p>
 
           {messageIndex > 0 && (
