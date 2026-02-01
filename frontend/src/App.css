@@ -414,6 +414,10 @@ body {
     font-size: 2rem;
   }
 
+  .celebration-gif {
+    max-width: 300px;
+  }
+
   .success-message {
     font-size: 1.1rem;
   }
