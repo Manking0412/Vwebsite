@@ -133,12 +133,18 @@ function App() {
               onMouseDown={handleNoClick}
               onTouchStart={moveNoButton}
               onClick={handleNoClick}
-              style={{
-                position: "fixed",
-                left: `${noButtonPosition.x}px`,
-                top: `${noButtonPosition.y}px`,
-                transform: `scale(${Math.max(0.3, 1 - yesSize * 0.1)})`,
-              }}
+              style={
+                noButtonMoved
+                  ? {
+                      position: "fixed",
+                      left: `${noButtonPosition.x}px`,
+                      top: `${noButtonPosition.y}px`,
+                      transform: `scale(${Math.max(0.3, 1 - yesSize * 0.1)})`,
+                    }
+                  : {
+                      transform: `scale(${Math.max(0.3, 1 - yesSize * 0.1)})`,
+                    }
+              }
               data-testid="no-button"
             >
               No
